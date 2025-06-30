@@ -56,7 +56,7 @@ You can deploy this app for free using [Render](https://render.com):
 ---
 
 
-Install locally with:
+Make sure you have all the requiremnets. Install locally with:
 
 ```bash
 pip install -r requirements.txt
