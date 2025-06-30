@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpamSweep - Multi-Domain Threat Detection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Playfair Display', serif;
+      background: #fdf6e3;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #d7ccc8;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 0 0 40px 40px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      transform: translateZ(0);
+      perspective: 1000px;
+    }
+
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      margin: 0;
+      transform: rotateX(10deg);
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #5d4037;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background-color: #fff8f0;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+      transform: perspective(800px) rotateX(0.5deg);
+    }
+
+    label {
+      display: block;
+      margin: 1rem 0 0.5rem;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #a1887f;
+      color: white;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #8d6e63;
+      transform: translateY(-2px);
+    }
+
+    .result {
+      margin-top: 2rem;
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: #4e342e;
+      text-shadow: 1px 1px #ccc;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 1rem;
+      background-color: #f0e4d7;
+      font-size: 0.95rem;
+      color: #555;
+      border-top: 1px solid #e0cfc2;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>SpamSweep</h1>
+    <p>Detecting Digital Threats with Intelligence & Elegance</p>
+  </header>
+
+  <div class="container">
+    <form id="scan-form">
+      <label for="scan-type">Select Scanner:</label>
+      <select id="scan-type">
+        <option value="email">Email</option>
+        <option value="sms">SMS</option>
+        <option value="url">URL</option>
+      </select>
+
+      <label for="scan-input">Enter your content or link:</label>
+      <textarea id="scan-input" rows="5" placeholder="Paste email content, SMS text, or URL here..."></textarea>
+
+      <button type="submit">Scan</button>
+    </form>
+    <div class="result" id="result"></div>
+  </div>
+
+  <footer>
+    &copy; 2025 SpamSweep | Made with by Aparna
+  </footer>
+
+  <script>
+    const form = document.getElementById("scan-form");
+    const resultDiv = document.getElementById("result");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const type = document.getElementById("scan-type").value;
+      const content = document.getElementById("scan-input").value.trim();
+
+      const res = await fetch(`/scan`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ type, content }),
+      });
+
+      const data = await res.json();
+      resultDiv.textContent = `Prediction: ${data.result}`;
+    });
+  </script>
+</body>
+</html>
