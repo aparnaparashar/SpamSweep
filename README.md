@@ -10,4 +10,4 @@ It intelligently scans and classifies:
 
 The goal is to safeguard users from social engineering attacks, fake websites, and unsolicited messages by providing instant and accurate predictions based on pre-trained ML models.
 
-With its clean UI and modular backend, SpamSweep brings real-time threat assessment right to your browser - no fluff.
+With its clean UI and modular backend, SpamSweep brings real-time threat assessment right to your browser - no bluff.
